@@ -28,7 +28,7 @@ jobs:
           patch=${tag_parts[2]}
           
           # Increment patch
-          # patch=$((patch + 1))
+          patch=$((patch + 1))
           new_tag="v${major}.${minor}.${patch}"
           echo "New tag is $new_tag"
           echo "::set-output name=new_tag::$new_tag"
