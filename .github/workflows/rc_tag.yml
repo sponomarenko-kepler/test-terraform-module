@@ -18,6 +18,7 @@ jobs:
           echo "latest_tag=$latest_tag" >> $GITHUB_OUTPUT  # Use GITHUB_OUTPUT to set output
 
       - name: Increment the tag
+        id: increment_tag
         run: |
           old_tag="${{ steps.latest_tag.outputs.latest_tag }}"
           tag_base=$(echo $old_tag | cut -d'-' -f 1)  # Extract base version
@@ -29,6 +30,7 @@ jobs:
           # Increment patch
           patch=$((patch + 1))
           new_tag="v${major}.${minor}.${patch}-rc"
+          echo $new_tag
           echo "new_tag=$new_tag" >> $GITHUB_OUTPUT  # Use GITHUB_OUTPUT for new tag
 
       - name: Create and push new tag
